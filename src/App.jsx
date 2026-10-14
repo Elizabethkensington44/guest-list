@@ -1,15 +1,18 @@
-/*import { useState } from "react";*/
+import { useState } from "react";
+
+import GuestDetails from "./guests/GuestDetails";
+import GuestList from "./guests/GuestList";
 
 export default function App() {
+  const [guestId, setGuestId] = useState(null);
+
   return (
-    <>
-      <h1>Guest List</h1>
-      <p>
-        <ul>
-          <li>guest detail including name, phone, email phone number</li>
-          <button>to find out more details</button>
-        </ul>
-      </p>
-    </>
+    <main>
+      {guestId ? (
+        <GuestDetails guestId={guestId} setGuestId={setGuestId} />
+      ) : (
+        <GuestList setGuestId={setGuestId} />
+      )}
+    </main>
   );
 }
