@@ -1,6 +1,6 @@
-import { API } from ".../constants";
+import { API } from "../constants";
 
-export async function getGuest() {
+export async function getGuests() {
   try {
     const respnose = await fetch(API + "/guests");
     const result = await respnose.json();

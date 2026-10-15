@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
-import { getGuest } from "../api/guest";
+import { getGuests } from "../api/guests";
 
 export default function GuestList({ setGuestId }) {
-  const [guest, setGuest] = useState([]);
+  const [guests, setGuests] = useState([]);
 
   useEffect(() => {
-    const syncGuest = async () => {
-      const data = await getGuest();
-      setGuest(data);
+    const syncGuests = async () => {
+      const data = await getGuests();
+      setGuests(data);
     };
-    syncGuest();
+    syncGuests();
   }, []);
 
   return (
     <>
-      <hi>Guest List</hi>
+      <h1>Guest List</h1>
       <table>
         <thead>
           <tr>
@@ -24,11 +24,11 @@ export default function GuestList({ setGuestId }) {
           </tr>
         </thead>
         <tbody>
-          {guest.map((guest) => (
-            <tr key={guest.id} onClick={() => setGuestId(guest.id)}>
-              <td>{guest.name}</td>
-              <td>{guest.email}</td>
-              <td>{guest.phone}</td>
+          {guests.map((guests) => (
+            <tr key={guests.id} onClick={() => setGuestId(guests.id)}>
+              <td>{guests.name}</td>
+              <td>{guests.email}</td>
+              <td>{guests.phone}</td>
             </tr>
           ))}
         </tbody>

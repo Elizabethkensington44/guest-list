@@ -1,29 +1,29 @@
-import { getGuest } from "../api/guest";
+import { getGuests } from "../api/guests";
 import { useState, useEffect } from "react";
 
 export default function GuestDetails({ guestId, setGuestId }) {
-  const [guest, setGuest] = useState(null);
+  const [guests, setGuests] = useState(null);
 
   useEffect(() => {
-    const syncGuest = async () => {
-      const data = await getGuest(guestId);
-      setGuest(data);
+    const syncGuests = async () => {
+      const data = await getGuests(guestId);
+      setGuests(data);
     };
-    syncGuest();
+    syncGuests();
   }, [guestId]);
 
-  if (!guest) return <p>Loading...</p>;
+  if (!guests) return <p>Loading...</p>;
 
   return (
     <article className="guest-details">
-      <h1>{guest.name}</h1>
+      <h1>{guests.name}</h1>
       <address>
-        {guest.email}
+        {getGuests.email}
         <br />
-        {guest.phone}
+        {guests.phone}
       </address>
-      <p>{guest.job}</p>
-      <p>{guest.bio}</p>
+      <p>{guests.job}</p>
+      <p>{guests.bio}</p>
       <button onClick={() => setGuestId(null)}>back</button>
     </article>
   );
